@@ -1,0 +1,90 @@
+<html>
+<body>
+	<table>
+			<tr>
+				<td><img src="linux.png" alt="picture of welcome" height="500"/></td>
+				<td>
+					<h1>Sign Up</h1>
+					<form name="myForm" method = "POST" action ="process.php" onsubmit="return check()">
+						<label>Full name</label><br/>
+						<input type="text" placeholder="Name" name="name"/><br/><br/>
+						<label>Email</label><br/>
+						<input type="email" placeholder="Email adress" name="email"/><br/><br/>
+						<label>Username</label><br/>
+						<input type="text" placeholder="Username" name="username"/><br/></br>
+						<label>Password</label><br/>
+						<input type="password" name="password"/><br/><br/>
+						<label>Repeat Password</label><br/>
+						<input type="password" name="repeatPassword"/><br/><br/>
+						<input type="checkbox" name="termofuser" value="agree" required/>
+						<label>I agree to the <b>Terms of User</b></label><br/><br/>
+						<input type="submit" value="Sign Up" /><!color to be added and shape>
+						<!img of arrow to be added and shape>
+						<input type="button" value="Sign in" name="Signin">
+					</form>
+				</td>
+			</tr>
+		</table>
+</body>
+<script>
+	function check() //function to validate the input data
+	{
+		var name=document.forms["myForm"]["name"].value; //input the name
+		var email=document.forms["myForm"]["email"].value; //input the email
+		var username=document.forms["myForm"]["username"].value; //input the username
+		var password=document.forms["myForm"]["password"].value; //input the password
+		var repeatPassword=document.forms["myForm"]["repeatPassword"].value; //input the repeatPassword
+		if(name=="") //if the name field is empty then alert the user to enter a name.
+		{
+			alert("Please enter a name");
+			return false;//return false
+		}
+		if(email=="")  //if the name field is empty then alert the user to enter an email.
+		{
+			alert("Please enter a email address");
+			return false;
+		}
+		if(username=="")  //if the name field is empty then alert the user to enter a username.
+		{
+			alert("Please enter a username");
+			return false;
+		}
+		if(password=="")  //if the name field is empty then alert the user to enter a password.
+		{
+			alert("Please enter a password");
+			return false;
+		}
+		if(repeatPassword=="")  //if the name field is empty then alert the user to enter the repeat password.
+		{
+			alert("Please re-enter your password");
+			return false;
+		}
+		var domain=["gmail.com","hotmail.com"] //domains to check
+		var count=0;
+		for(var i=0;i<domain.length;i++)
+		{
+			if(email.search(domain[i])!=-1) //if the domain found is correct then it will return the index of the domain.
+				count=1; //if the index returned is not -1 then the correct domain is found and set the value of count as 1.
+		}
+		if(count==0) //if no correct domain is found then alert the user to enter again the correct domain .
+		{
+			alert("Please enter a correct domain");
+			return false;
+		}
+		var psswrd=new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); //Using regular expression to check if the password has desired characters.
+		if(!password.match(psswrd)) //if the password doesn't contain the desired characters then it will return false.
+		{
+			alert("The password must contain at least 1 uppercase character, 1 lowercase character, 1 digit, 1 special character and a minimum length of 8 characters.");
+			return false;
+		}
+		if(password!=repeatPassword) //if the repeat password is not equal to password then it will return false.
+		{
+			alert("Both the passwords do not match");
+			return false;
+		}
+		
+	}
+
+</script>
+
+</html>
