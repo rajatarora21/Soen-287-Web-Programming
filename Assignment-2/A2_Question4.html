@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<style>
+			mark
+			{
+				background:#0CFF00;
+			}
+		</style>
+	</head>
+	<body>
+			<input type="text" placeholder="Enter value here" id="hide">
+			<input type="button" value="check" onclick="HideMe()">
+			<p id="check"></p>
+	</body>
+		<script>
+			function HideMe()
+			{
+				var string=document.getElementById("hide").value.split(" "); //split each word by space.
+				var words=["soen287","summer","19"]; //the words to check.
+				var value="";
+				var count=0; //count to check if at least one value was found.
+				for(var i=0;i<string.length;i++)
+				{
+					for(var j=0;j<words.length;j++)
+					{
+						var temp=string[i].toLowerCase(); //making the word at index i to lower case
+						if(temp==words[j]) //if the word equals any of the desired then replace the word in the array with XXXXXXX.
+						{
+							string[i]="XXXXXXX";
+							count=1; //setting the value of count as 1.
+						}
+					}
+					value=value+" "+string[i]; //final value to be returned.
+				}
+				if(count==1) //if the value of count is one then just return the value.
+				{
+					document.getElementById("check").innerHTML=value;
+				}
+				else //else not a single desired word was found so return the highlighted value.
+				{
+					document.getElementById("check").innerHTML="<mark>"+value+"</mark>";
+				}
+				
+			}
+			
+		</script>
+
+</html>

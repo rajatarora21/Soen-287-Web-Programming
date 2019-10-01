@@ -1,0 +1,62 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<form>
+			<input type="text" placeholder="Enter your number" id="number">
+			<input type="button" value="Try it" onclick="validateNumber()">
+		</form>
+	</body>
+	<script>
+		var data; //global variable
+		function validateNumber()
+		{
+			data=document.getElementById("number").value;
+			if(isNaN(data)) //if the value if not a number then alert the user.
+			{
+				alert("Not a number.Please enter a number");
+			}
+			else{
+				isPrimeNumber(); //to check if the number is prime or not.
+			}
+		}
+		function isPrimeNumber()
+		{
+			var a=parseInt(data);
+			var count=0;
+			for(var i=1;i<=a;i++) //a for loop that goes till the number 
+			{
+				if(a%i==0) //if the number is divided by any number between 1 and a then increase the value of count by 1.
+				{
+					count++;
+				}
+				
+			}
+			if(count==2) //if the value of count is 2 , then its a prime.
+			{
+				reverseNumber(); //call the reverseNumber method.
+			}
+			else
+			{
+				alert("The number is not prime"); //if the number is not prime then alert the user
+			}
+		}
+		function reverseNumber()
+		{
+				var a=parseInt(data);
+				var rev=0;
+				var rem=0;
+				while(a) //a while loop that is used to calculate the reverse of a number.
+				{
+					rem=a%10; //it takes the last digit.
+					rev=(rev*10)+rem; 
+					a=parseInt(a/10); 
+				}
+				alert("The number is prime and the reverse is "+rev); //alert the user with the reverse.
+		}
+			
+			
+			
+	</script>
+</html>

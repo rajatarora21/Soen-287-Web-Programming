@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<script src="plotly-latest.min.js"></script>
+		<style>
+			table,td
+			{
+				border:1px solid black;
+				border-collapse:collapse;
+				
+			}
+			tr:nth-child(odd)
+			{
+				background-color:#FFCE07;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>Input String:</td>
+				<td><input type="text" id="string"></td>
+			</tr>
+			<tr>
+				<td>Input word:</td>
+				<td><input type="text" id="word"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" value ="Plot Histogram" onclick="bar()"></td>
+			</tr>
+		</table>
+		<div id="myDiv">
+			</div>
+	</body>
+	<script>
+	function bar()
+	{
+		var word=document.getElementById("word").value.split(""); //splitting the word into character array.
+		var string=document.getElementById("string").value.split(""); //splitting the string into character array.
+		var wordCount=[]; //word count counts the occurance of each words.
+		for(var i=0;i<word.length;i++)
+		{
+			wordCount[i]=0; //initial value assigned as 0.
+			for(var j=0;j<string.length;j++)
+			{
+				if(word[i]===string[j]) //if the matching character is found.
+				{
+					wordCount[i]=wordCount[i]+1; //increase the value by 1.
+				}
+			}
+			
+		}
+		var data = [{
+			  x: word, //the x-axis is word.
+			  y: wordCount, //the y-axis is word count.
+			  type: 'bar', //type is of bar.
+			  marker:{
+				color:"#FFCE07" //color of the graph. 
+			  
+			  }
+			}];
+		var layout={
+			xaxis:{title:'Values'}, //title for x-axis 
+			yaxis:{title:'Count'}, //title for y-axis.
+			title:'Histogram' //main title
+			
+		}
+			Plotly.newPlot('myDiv', data, layout, {showSendToCloud:true}); //plotting the graph.
+	}
+		
+	</script>
+</html>
